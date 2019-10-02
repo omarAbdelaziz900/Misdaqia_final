@@ -15,8 +15,13 @@ import com.example.misdaqia.Helper.MainFontTextview;
 import com.example.misdaqia.Model.Category;
 import com.example.misdaqia.Model.MainCategory;
 import com.example.misdaqia.R;
+import com.example.misdaqia.View.Buldings;
+import com.example.misdaqia.View.Cars;
 import com.example.misdaqia.View.CategoryDetailsActivity;
+import com.example.misdaqia.View.Jewerly;
 import com.example.misdaqia.View.MazadItemDetailsActivity;
+import com.example.misdaqia.View.Other;
+import com.example.misdaqia.View.Vichle;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -52,7 +57,24 @@ public class MainCategoriesAdapter extends RecyclerView.Adapter<MainCategoriesAd
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(context, CategoryDetailsActivity.class);
+//                intent = new Intent(context, CategoryDetailsActivity.class);
+
+                if (i==0){
+                    intent = new Intent(context, Jewerly.class);
+
+                }else if (i==1){
+                    intent = new Intent(context, Vichle.class);
+
+                }else if (i==2){
+                    intent = new Intent(context, Cars.class);
+
+                }else if (i==3){
+                    intent = new Intent(context, Buldings.class);
+
+                }else if (i==4){
+                    intent = new Intent(context, Other.class);
+
+                }
 //                intent.putExtra("category", categories.get(i));
                 context.startActivity(intent);
             }

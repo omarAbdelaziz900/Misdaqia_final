@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+   >
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="20dp"
+        app:cardCornerRadius="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+
+            <ImageView
+                android:id="@+id/julary_image"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/julary"
+                android:scaleType="fitXY"/>
+
+            <com.example.misdaqia.Helper.MainFontTextview
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/julary_name"
+                android:text="hassan"
+                android:textSize="25dp"
+                android:textColor="@color/orange"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <com.example.misdaqia.Helper.MainFontTextview
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/julary_mazadType"
+                    android:text="hassan"
+                    android:textSize="20dp"
+                    android:textColor="@color/orange"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+
+                    android:layout_weight="1"/>
+
+
+                <com.example.misdaqia.Helper.MainFontTextview
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/julary_price"
+                    android:text="hassan"
+                    android:textSize="20dp"
+                    android:textColor="@color/orange"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+
+                <com.example.misdaqia.Helper.MainFontTextview
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/julary_views"
+                    android:text="5"
+                    android:textSize="20dp"
+                    android:textColor="@color/orange"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:drawableRight="@drawable/ic_remove_red_eye_black_24dp"
+                    android:layout_weight="1"/>
+
+
+                <com.example.misdaqia.Helper.MainFontTextview
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/julary_location"
+                    android:text="5"
+                    android:textSize="20dp"
+                    android:textColor="@color/orange"
+                    android:layout_marginTop="15dp"
+                    android:drawableRight="@drawable/ic_location_on_black_24dp"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+
+                <com.example.misdaqia.Helper.MainFontTextview
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/julary_time"
+                    android:text="5"
+                    android:textSize="17dp"
+                    android:textColor="@color/orange"
+                    android:paddingRight="7dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:layout_weight="3"
+                    android:drawableRight="@drawable/ic_access_time_black_24dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+        </LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.misdaqia.Services;
 
+import com.example.misdaqia.Model.JularyObjectModel;
 import com.example.misdaqia.Model.LoginUserResponse;
 import com.example.misdaqia.Model.MainCategory;
 import com.example.misdaqia.Model.MainCategoryResponse;
@@ -35,5 +36,19 @@ public interface JsonPlaceHolderApi {
     @GET("getMazadApi")
     Call<MainCategoryResponse> getMazadat();
 
+    @GET("getJewelryApi ")
+    Call<JularyObjectModel> getJulary();
+
+    @GET("getVichleApi ")
+    Call<JularyObjectModel> getVichle();
+
+    @GET("getcarApi ")
+    Call<JularyObjectModel> getCars();
+
+    @GET("getpropApi ")
+    Call<JularyObjectModel> getBuildings();
+
+    @GET("getHighValueApi ")
+    Call<JularyObjectModel> getOther();
 
 }
