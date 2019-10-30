@@ -8,45 +8,16 @@
     tools:context=".View.SignUpActivity">
 
 
-    <LinearLayout
-
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:onClick="backLogin"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="10dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:src="@drawable/ic_arrow_back_black_24dp"
-                android:tint="@color/white" />
-
-            <com.example.misdaqia.Helper.MainFontTextview
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:gravity="center"
-                android:text="رجوع"
-                android:textColor="#ffffffff"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
+       <include layout="@layout/public_toolbar"/>
 
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_below="@id/toolbar"
             android:id="@+id/profile_profile_image"
             android:layout_width="200dp"
             android:layout_height="150dp"
@@ -57,16 +28,25 @@
             android:src="@drawable/placeperson" />
 
 
+        <LinearLayout
+            android:layout_below="@+id/profile_profile_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
         <com.example.misdaqia.Helper.MainFontEdittext
             android:id="@+id/edtname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
             android:layout_marginTop="30dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="40dp"
             android:background="@drawable/back_edit"
             android:gravity="center"
-            android:hint="الاسم"
+            android:textAllCaps="false"
+            android:hint="@string/name"
             android:inputType="text"
             android:maxLines="1"
             android:paddingLeft="25dp"
@@ -99,12 +79,13 @@
             android:id="@+id/edtemail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="40dp"
             android:background="@drawable/back_edit"
             android:gravity="center"
-            android:hint="@string/prompt_email"
+            android:hint="@string/email_address"
+            android:textAllCaps="false"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:paddingLeft="25dp"
@@ -117,13 +98,14 @@
             android:id="@+id/edtpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="40dp"
             android:layout_weight="1"
             android:background="@drawable/back_edit"
             android:gravity="center"
-            android:hint="@string/prompt_password"
+            android:hint="@string/password"
+            android:textAllCaps="false"
             android:inputType="textWebPassword"
             android:maxLines="1"
             android:paddingLeft="25dp"
@@ -137,14 +119,15 @@
             android:id="@+id/edtverifiedpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="40dp"
             android:background="@drawable/back_edit"
             android:gravity="center"
             android:hint="@string/confirm_password"
             android:inputType="textWebPassword"
             android:maxLines="1"
+            android:textAllCaps="false"
             android:paddingLeft="25dp"
             android:paddingTop="9dp"
             android:paddingRight="25dp"
@@ -156,15 +139,20 @@
             android:id="@+id/signBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
             android:layout_marginTop="30dp"
-            android:layout_marginRight="70dp"
             android:layout_marginBottom="30dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginStart="70dp"
             android:textSize="12dp"
             android:background="@drawable/button_orange"
             android:text="@string/sign_up2"
+            android:textAllCaps="false"
             android:textColor="@color/white" />
-    </LinearLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
 </ScrollView>
 
 

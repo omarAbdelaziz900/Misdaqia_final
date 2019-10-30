@@ -31,12 +31,13 @@
             android:id="@+id/edtemail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="40dp"
             android:background="@drawable/back_edit"
             android:ems="10"
+            android:textAllCaps="false"
             android:gravity="center"
-            android:hint="البريد الالكتروني"
+            android:hint="@string/email_address"
             android:inputType="textEmailAddress"
             android:paddingTop="9dp"
             android:maxLines="1"
@@ -48,14 +49,15 @@
             android:id="@+id/edtpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@drawable/back_edit"
             android:ems="10"
+            android:textAllCaps="false"
             android:maxLines="1"
             android:gravity="center"
-            android:hint="الرقم السري"
+            android:hint="@string/password"
             android:inputType="textWebPassword"
             android:paddingTop="9dp"
             android:paddingBottom="9dp"
@@ -68,10 +70,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
+            android:textAllCaps="false"
             android:background="@drawable/button_orange"
-            android:text="تسجيل الدخول"
+            android:text="@string/login"
             android:textColor="#fff"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
 
         <com.example.misdaqia.Helper.MainFontTextview
@@ -81,8 +84,9 @@
             android:layout_marginTop="30dp"
             android:gravity="center"
             android:onClick="goSignup"
-            android:text="انشاء حساب جديد ؟"
+            android:text="@string/sign_up"
             android:textColor="#fff"
+            android:textAllCaps="false"
             android:textSize="16dp"
             android:textStyle="bold" />
 
@@ -93,9 +97,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="google"
+            android:text="@string/google"
             android:textColor="#fff"
             android:textSize="16dp"
+            android:textAllCaps="false"
             android:textStyle="bold" />
 
     </LinearLayout>

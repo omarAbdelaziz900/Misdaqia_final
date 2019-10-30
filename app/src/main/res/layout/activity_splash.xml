@@ -14,7 +14,7 @@
         android:id="@+id/splashTxt"
         android:textDirection="anyRtl"
         android:scaleType="fitXY"
-        android:text="مصداقيه"
+        android:text="@string/misdaqia"
         android:textSize="36sp"
         android:textColor="@color/orange"
         android:textStyle="bold"

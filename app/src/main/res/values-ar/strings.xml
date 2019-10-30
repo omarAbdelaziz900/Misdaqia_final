@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">Mesdakya</string>
-
+    <!-- Strings related to login -->
     <string name="title_activity_login">Sign in</string>
 
-    <!-- Strings related to login -->
     <string name="prompt_email">البريد الالكترونى </string>
     <string name="prompt_phone">رقم الهاتف  </string>
     <string name="prompt_password">كلمه المرور </string>
@@ -26,6 +25,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
     <string name="title_activity_client_main">ClientMainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -41,6 +41,7 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="title_activity_seller_main">SellerMainActivity</string>
+
 
     <string name="fail">فشل</string>
     <string name="no_internet">لا يوجد اتصال بالانترنت</string>

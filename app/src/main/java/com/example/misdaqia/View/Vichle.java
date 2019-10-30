@@ -13,6 +13,7 @@ import com.example.misdaqia.R;
 import com.example.misdaqia.Services.ApiClient;
 import com.example.misdaqia.Services.JsonPlaceHolderApi;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -55,15 +56,16 @@ public class Vichle extends AppCompatActivity implements JularyAdapter.ClickList
                     vichleRecyclerId.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }else {
-                    Toast.makeText(Vichle.this, "faild", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Vichle.this, getString(R.string.fail), Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<JularyObjectModel> call, Throwable t) {
-                Toast.makeText(Vichle.this, "Check Internet", Toast.LENGTH_SHORT).show();
-
+             if (t instanceof ConnectException){
+                Toast.makeText(Vichle.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
+            }
             }
         });
 

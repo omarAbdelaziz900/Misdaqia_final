@@ -19,6 +19,7 @@ import com.example.misdaqia.R;
 import com.example.misdaqia.Services.ApiClient;
 import com.example.misdaqia.Services.JsonPlaceHolderApi;
 
+import java.net.ConnectException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -99,19 +100,20 @@ public class SignInActivity extends AppCompatActivity {
 
 
                     }else {
-                        Toast.makeText(SignInActivity.this,"خطأ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this,getString(R.string.fail), Toast.LENGTH_SHORT).show();
                     }
                 }else {
 
-                    Toast.makeText(SignInActivity.this,"خطأ ف الاتصال" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignInActivity.this,getString(R.string.fail) , Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginUserResponse> call, Throwable t) {
 
-                Toast.makeText(SignInActivity.this,"خطأ ف الاتصال!" , Toast.LENGTH_SHORT).show();
-
+                if (t instanceof ConnectException) {
+                    Toast.makeText(SignInActivity.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -132,7 +134,7 @@ public class SignInActivity extends AppCompatActivity {
         btnlogin = (MainFontButton) findViewById(R.id.btnlogin);
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("انتظر ...");
+        progressDialog.setMessage(getString(R.string.wait));
     }
 
     private boolean checkValidation() {
@@ -140,17 +142,17 @@ public class SignInActivity extends AppCompatActivity {
         boolean flag = false;
 
         if (edtemail.getText().toString().length() == 0) {
-            edtemail.setError("البريد الالكتروني فارغ");
+            edtemail.setError(getString(R.string.empty_email));
             edtemail.requestFocus();
             flag = false;
 
         } else if (edtpassword.getText().toString().length() == 0) {
-            edtpassword.setError("كلمه المرور فارغه");
+            edtpassword.setError(getString(R.string.empty_password));
             edtpassword.requestFocus();
             flag = false;
 
         } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(edtemail.getText().toString().trim()).matches()) {
-            edtemail.setError("لبريد الالكتروني غير صحيح");
+            edtemail.setError(getString(R.string.invalid_email));
             edtemail.requestFocus();
             flag = false;
         } else {
@@ -165,9 +167,9 @@ public class SignInActivity extends AppCompatActivity {
     public void onBackPressed() {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("خروج")
-                .setMessage("هل انت متاكد من الخروج!")
-                .setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                .setTitle(getString(R.string.exit))
+                .setMessage(getString(R.string.are_you_sure_to_exit))
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent a = new Intent(Intent.ACTION_MAIN);
@@ -177,7 +179,7 @@ public class SignInActivity extends AppCompatActivity {
                     }
 
                 })
-                .setNegativeButton("لا", null)
+                .setNegativeButton(getString(R.string.no), null)
                 .show();
     }
 

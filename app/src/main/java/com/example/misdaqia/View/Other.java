@@ -54,14 +54,14 @@ public class Other extends AppCompatActivity implements JularyAdapter.ClickListe
                     otherRecyclerId.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }else {
-                    Toast.makeText(Other.this, "faild", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Other.this, getString(R.string.fail), Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<JularyObjectModel> call, Throwable t) {
-                Toast.makeText(Other.this, "Check Internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Other.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
 
             }
         });

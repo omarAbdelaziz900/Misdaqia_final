@@ -26,16 +26,28 @@ public class MazadItemDetailsActivity extends AppCompatActivity {
     MainFontButton btnBuy;
     Dialog dialog;
     Category currentCategory;
-    private static final String TAG = "MazadItemDetailsActivity";
+    private static final String TAG = "MazdItemDetailsActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mazad_item_details);
 
         initViews();
-        currentCategory = (Category) getIntent().getSerializableExtra("category");
-        handleViews();
-        Log.d(TAG, "onCreate: " + currentCategory.getPrice());
+
+        if (getIntent()!=null) {
+            if (getIntent().hasExtra("category")) {
+                currentCategory = (Category) getIntent().getSerializableExtra("category");
+                handleViews();
+                Log.d(TAG, "onCreate: " + currentCategory.getPrice());
+            }
+        }
+
+//        btnBuy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                eee
+//            }
+//        });
     }
 
     private void initViews(){

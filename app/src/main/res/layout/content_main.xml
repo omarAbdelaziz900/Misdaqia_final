@@ -19,9 +19,9 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp">
 
@@ -44,10 +44,10 @@
                 <com.example.misdaqia.Helper.HeaderFontTextview
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="start|center"
                     android:gravity="center"
                      android:layout_weight="1"
-                    android:text=" تم"
+                    android:text="@string/done"
                     android:textColor="#000"
                     android:textSize="10dp"
                     android:textStyle="bold" />
@@ -55,12 +55,12 @@
                 <com.example.misdaqia.Helper.MainFontEdittext
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
+                    android:layout_gravity="end|center"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="3"
                     android:gravity="center"
-                    android:hint=" ابحث هنا"
+                    android:hint="@string/search_here"
                     android:textColor="#4E4E4E"
                     android:textColorHint="#a6a6a6"
                     android:textSize="15dp"
@@ -89,10 +89,10 @@
                 <com.example.misdaqia.Helper.HeaderFontTextview
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
+                    android:layout_gravity="end"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="10dp"
-                    android:text=" الاقسام "
+                    android:text="@string/departement"
                     android:textColor="@color/grey"
                     android:textSize="13dp"
                     android:textStyle="bold" />
@@ -134,10 +134,10 @@
                 <com.example.misdaqia.Helper.HeaderFontTextview
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
+                    android:layout_gravity="end"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="10dp"
-                    android:text=" المزادات "
+                    android:text="@string/mzadat"
                     android:textColor="@color/grey"
                     android:textSize="13dp"
                     android:textStyle="bold" />

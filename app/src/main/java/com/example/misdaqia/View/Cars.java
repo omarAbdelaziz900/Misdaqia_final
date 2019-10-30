@@ -40,6 +40,7 @@ public class Cars extends AppCompatActivity implements JularyAdapter.ClickListen
     }
     private void GetVichleData(){
         carslist.clear();
+        
 
         Call<JularyObjectModel> call=jsonPlaceHolderApi.getCars();
         call.enqueue(new Callback<JularyObjectModel>() {
@@ -54,14 +55,14 @@ public class Cars extends AppCompatActivity implements JularyAdapter.ClickListen
                     vichleRecyclerId.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }else {
-                    Toast.makeText(Cars.this, "faild", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Cars.this, getString(R.string.fail), Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<JularyObjectModel> call, Throwable t) {
-                Toast.makeText(Cars.this, "Check Internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Cars.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
 
             }
         });

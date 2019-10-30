@@ -117,9 +117,9 @@ public class MainActivity extends AppCompatActivity
 //            super.onBackPressed();
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("خروج")
-                    .setMessage("هل انت متاكد من الخروج!")
-                    .setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    .setTitle(getString(R.string.exit))
+                    .setMessage(getString(R.string.are_you_sure_to_exit))
+                    .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent a = new Intent(Intent.ACTION_MAIN);
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity
                         }
 
                     })
-                    .setNegativeButton("لا", null)
+                    .setNegativeButton(getString(R.string.no), null)
                     .show();
 
         }
@@ -185,9 +185,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("خروج")
-                    .setMessage("هل انت متاكد من الخروج!")
-                    .setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    .setTitle(getString(R.string.exit))
+                    .setMessage(getString(R.string.are_you_sure_to_exit))
+                    .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity
                         }
 
                     })
-                    .setNegativeButton("لا", null)
+                    .setNegativeButton(getString(R.string.no), null)
                     .show();
 
         }
@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity
         navigationView = findViewById(R.id.nav_view);
 
         progressDialog=new ProgressDialog(MainActivity.this);
-        progressDialog.setMessage("please wait ....");
+        progressDialog.setMessage(getString(R.string.please_wait));
         categoryRecycler = (RecyclerView) findViewById(R.id.category_recycler);
 //        mazadatRecycler = (RecyclerView) findViewById(R.id.mazadat_recycler);
 

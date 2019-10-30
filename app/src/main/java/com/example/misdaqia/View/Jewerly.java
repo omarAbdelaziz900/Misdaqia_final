@@ -55,14 +55,14 @@ public class Jewerly extends AppCompatActivity implements JularyAdapter.ClickLis
                     jularyId.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }else {
-                    Toast.makeText(Jewerly.this, "faild", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Jewerly.this, getString(R.string.fail), Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<JularyObjectModel> call, Throwable t) {
-                Toast.makeText(Jewerly.this, "Check Internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Jewerly.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
 
             }
         });

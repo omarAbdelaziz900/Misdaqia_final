@@ -13,6 +13,7 @@ import com.example.misdaqia.R;
 import com.example.misdaqia.Services.ApiClient;
 import com.example.misdaqia.Services.JsonPlaceHolderApi;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -55,14 +56,17 @@ public class Buldings extends AppCompatActivity implements JularyAdapter.ClickLi
                     buldingRecyclerId.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }else {
-                    Toast.makeText(Buldings.this, "faild", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Buldings.this, getString(R.string.fail), Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<JularyObjectModel> call, Throwable t) {
-                Toast.makeText(Buldings.this, "Check Internet", Toast.LENGTH_SHORT).show();
+                if (t instanceof ConnectException) {
+                    Toast.makeText(Buldings.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.misdaqia.Common.Common;
@@ -16,6 +17,7 @@ import com.example.misdaqia.Model.LoginUserResponse;
 import com.example.misdaqia.R;
 import com.example.misdaqia.Services.ApiClient;
 import com.example.misdaqia.Services.JsonPlaceHolderApi;
+import com.example.misdaqia.localizationUtil.Localization;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +38,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        Localization.SetLanguage(SplashActivity.this, Localization.arabic);
 
         jsonPlaceHolderApi = ApiClient.getApiClient().create(JsonPlaceHolderApi.class);
 
@@ -129,7 +133,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
         } else {
-            Toast.makeText(SplashActivity.this, "لا يوجد اتصال بالانترنت ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SplashActivity.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
         }
 
     }
