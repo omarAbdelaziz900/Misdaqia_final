@@ -1,4 +1,4 @@
-package com.example.misdaqia.View;
+package com.example.misdaqia.View.register;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -13,11 +13,15 @@ import android.widget.Toast;
 
 import com.example.misdaqia.Helper.MainFontButton;
 import com.example.misdaqia.Helper.MainFontEdittext;
-import com.example.misdaqia.Model.registerUserResponse;
 import com.example.misdaqia.Model.User;
+import com.example.misdaqia.Model.registerUserResponse;
 import com.example.misdaqia.R;
 import com.example.misdaqia.Services.ApiClient;
 import com.example.misdaqia.Services.JsonPlaceHolderApi;
+import com.example.misdaqia.SharedPreferences.PreferenceHelper;
+import com.example.misdaqia.View.MainActivity;
+import com.example.misdaqia.View.login.SignInActivity;
+import com.example.misdaqia.localizationUtil.Localization;
 
 import java.net.ConnectException;
 
@@ -60,13 +64,10 @@ public class SignUpActivity extends AppCompatActivity {
                 backLogin();
             }
         });
-
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     private void initActions() {
-
-
         signBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +80,9 @@ public class SignUpActivity extends AppCompatActivity {
                 if (!checkValidation()) {
                     return;
                 } else {
+//                    createUser2(new RegisterRequest(name, email, password, re_password));
                     createUser(name, email, password, re_password);
+
                 }
 
             }
@@ -87,15 +90,18 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
     private void createUser(String name, String email, String password, String re_password) {
 
         progressDialog.show();
 
-        Call<registerUserResponse> call = jsonPlaceHolderApi.createUser(name, email, password, re_password);
+        Call<RegisterResponse> call = jsonPlaceHolderApi.createUser(name, email, password, re_password);
 
-        call.enqueue(new Callback<registerUserResponse>() {
+        call.enqueue(new Callback<RegisterResponse>() {
             @Override
-            public void onResponse(Call<registerUserResponse> call, Response<registerUserResponse> response) {
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
 
                 if (!response.isSuccessful()) {
                     Toast.makeText(SignUpActivity.this, "Code: " + response.code(), Toast.LENGTH_SHORT).show();
@@ -108,24 +114,23 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(SignUpActivity.this, getString(R.string.exit), Toast.LENGTH_SHORT).show();
                 }
 
-                registerUserResponse registerUserResponse = response.body();
+                RegisterResponse registerResponse = response.body();
 
-                User users = registerUserResponse.getUserInfo();
-
-                SharedPreferences.Editor edit = getSharedPreferences("data", Context.MODE_PRIVATE).edit();
-                edit.putString("email", users.getEmail());
-                edit.putString("password", users.getPassword());
-                edit.commit();
-
-                progressDialog.dismiss();
-
-                startActivity(new Intent(SignUpActivity.this, MainActivity.class));
-                finish();
+                if (registerResponse.isStatus()){
+                    progressDialog.dismiss();
+//                    if (Localization.getCurrentLanguageID(SignUpActivity.this)==Localization.arabic){
+                        Toast.makeText(SignUpActivity.this, getString(R.string.account_created), Toast.LENGTH_SHORT).show();
+//
+//
+                }else {
+                    Toast.makeText(SignUpActivity.this, getString(R.string.fail), Toast.LENGTH_SHORT).show();
+                }
+                navigateToLogin();
             }
 
 
             @Override
-            public void onFailure(Call<registerUserResponse> call, Throwable t) {
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
                 progressDialog.dismiss();
                 Log.d(TAG, "onFailure: " + t.getMessage());
 //                Toast.makeText(SignUpActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
@@ -136,6 +141,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
     }
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     public void backLogin() {
@@ -208,5 +214,9 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
+    void navigateToLogin(){
+        startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
+        finish();
+    }
 }
 

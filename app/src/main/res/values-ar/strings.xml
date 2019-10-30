@@ -79,4 +79,5 @@
     <string name="google">google</string>
     <string name="misdaqia">مصداقيه</string>
     <string name="name">الاسم</string>
+    <string name="account_created">تمت العمليه بنجاح</string>
 </resources>

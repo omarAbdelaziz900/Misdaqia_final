@@ -11,26 +11,24 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.misdaqia.Adapters.MainCategoriesAdapter;
+import com.example.misdaqia.Helper.HeaderFontTextview;
 import com.example.misdaqia.Model.MainCategory;
 import com.example.misdaqia.Model.MainCategoryResponse;
 import com.example.misdaqia.R;
 import com.example.misdaqia.Services.ApiClient;
 import com.example.misdaqia.Services.JsonPlaceHolderApi;
+import com.example.misdaqia.SharedPreferences.PreferenceHelper;
+import com.example.misdaqia.View.login.SignInActivity;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -46,8 +44,9 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar;
     DrawerLayout drawer;
     NavigationView navigationView;
+    View headerView;
     ProgressDialog progressDialog;
-
+    HeaderFontTextview txt_userName;
     JsonPlaceHolderApi jsonPlaceHolderApi;
 
     @Override
@@ -209,10 +208,14 @@ public class MainActivity extends AppCompatActivity
     /////////////////////////////////////////////////////////////////////////////////////////////////
 
     private void initView() {
+//        txt_userName = findViewById(R.id.txt_userName);
         toolbar = findViewById(R.id.toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+
+        headerView = navigationView.getHeaderView(0);
+        txt_userName = headerView.findViewById(R.id.txt_userName);
 
         progressDialog=new ProgressDialog(MainActivity.this);
         progressDialog.setMessage(getString(R.string.please_wait));
@@ -223,6 +226,10 @@ public class MainActivity extends AppCompatActivity
 
         categoryRecycler.setLayoutManager(new GridLayoutManager(this,2));
 //        mazadatRecycler.setLayoutManager(new LinearLayoutManager(this));
+        if (PreferenceHelper.getUserFirstName(this)!=null){
+            txt_userName.setText(PreferenceHelper.getUserFirstName(MainActivity.this));
+//            Toast.makeText(this, PreferenceHelper.getUserFirstName(MainActivity.this)+"", Toast.LENGTH_SHORT).show();
+        }
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////
 

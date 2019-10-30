@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:text="user name"
              android:textSize="15dp"
+            android:id="@+id/txt_userName"
             android:layout_marginLeft="15dp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_marginRight="15dp"

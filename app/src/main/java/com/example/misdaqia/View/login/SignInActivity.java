@@ -1,4 +1,4 @@
-package com.example.misdaqia.View;
+package com.example.misdaqia.View.login;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -18,6 +18,10 @@ import com.example.misdaqia.Model.LoginUserResponse;
 import com.example.misdaqia.R;
 import com.example.misdaqia.Services.ApiClient;
 import com.example.misdaqia.Services.JsonPlaceHolderApi;
+import com.example.misdaqia.SharedPreferences.PreferenceHelper;
+import com.example.misdaqia.View.MainActivity;
+import com.example.misdaqia.View.register.SignUpActivity;
+import com.example.misdaqia.ViewUtil.ViewUtil;
 
 import java.net.ConnectException;
 import java.util.HashMap;
@@ -63,64 +67,62 @@ public class SignInActivity extends AppCompatActivity {
                 if (checkValidation() == false) {
                     return;
                 } else {
-                    loginUser(email, password);
-
+//                    loginUser(email, password);
+                    ViewUtil.hideKeyboard(SignInActivity.this);
+                    loginUser(new LoginRequest(email,password));
                 }
             }
         });
     }
 
-    private void loginUser(String Email, final String Password) {
+    private void loginUser(LoginRequest loginRequest) {
 
         progressDialog.show();
 
-        Map<String, String> parameters = new HashMap<>();
-        parameters.put("password",Password);
-        parameters.put("email",Email);
-
-        Call<LoginUserResponse> call = jsonPlaceHolderApi.Login(parameters);
-        call.enqueue(new Callback<LoginUserResponse>() {
+//        Call<LoginResponse> call = jsonPlaceHolderApi.loginForUser(loginRequest,"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjBlZjAxYTk1M2YxNWQyMWQ3MDRiZmZkMTkyYjcwMzRjMmU2ZGU4OTkyMzI3NTY1NTA1ZDJmMDZmNTRhYzA4MDliMGY4Zjk1ZTYyZGExNjc0In0.eyJhdWQiOiIxIiwianRpIjoiMGVmMDFhOTUzZjE1ZDIxZDcwNGJmZmQxOTJiNzAzNGMyZTZkZTg5OTIzMjc1NjU1MDVkMmYwNmY1NGFjMDgwOWIwZjhmOTVlNjJkYTE2NzQiLCJpYXQiOjE1NzI0NDY5NDUsIm5iZiI6MTU3MjQ0Njk0NSwiZXhwIjoxNjA0MDY5MzQ1LCJzdWIiOiIzOCIsInNjb3BlcyI6WyJ1c2VyIl19.hwmA4JLvnYQC8WGAp0VvueRAh73o8juGzzedVIoegEaqphhX6waPe3x5iJOMEo0ayndDce1LwM1QJCcN5CtNWocLNp460M6YGGM3znK6Y64y8ciQQxm3D3Tr5GKbvJ-3Xhfx6_0N73BUki0fenbsUreS-76lIRJrcjiReTs_KT98BOei3IjtCofzn38hz31XXMVIP4hFNQci_iwg8-csaD2YlgFkYfiqacYHPcH5vUh6mk0n1cZnRnK9Zl10Uo7JWMF42d1zQ6GStWhMJP5AiSTAPqLsZ80hwUv9sScC6ZBhDrrslaCE6_tHrXZovlOZwuIJOR7noLmQprjk4pVXB-oRJPksCWNPMb8hZqei0YsL00QWevn_wwHuXzb5VHPITDRKw3t9FJoqTt1qksoEIJwzLQWfaB92reWNPVTC8KItX09wvqVNssRm4Sij9GhXYK9a1bKiY9Bou-4_lxAj1EX1hTl7rwl-uQs8F30h79XXUO9tg0w0-2OG4yhU1c095gaI8mG8bQ42xHrfRs_WJPZ0gHU-mgz-VelwxT-8YM_F1wIZMhdD5eZOhj8OHYiFjXmLJ6VWWZut3zJSM2ypGZ65uRS3e99NJ9PjWP60J3L4dMwlay5yYL_dAh9OZRMjKqxp8q2WVlaxVgUZ5hN3WW4Xupv3GT0-MtfqeDT-Wps");
+        Call<LoginResponse> call = jsonPlaceHolderApi.loginForUser(loginRequest);
+        call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<LoginUserResponse> call, Response<LoginUserResponse> response) {
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
                 if (response.isSuccessful()){
 
-                    LoginUserResponse userModel=response.body();
-                    if (userModel.getStatus().equals("user exist")){
+                    LoginResponse loginResponse=response.body();
 
-                        SharedPreferences.Editor edit = getSharedPreferences("data", Context.MODE_PRIVATE).edit();
-                        edit.putString("email", userModel.getEmail());
-                        edit.putString("password", userModel.getPassword());
-                        edit.commit();
-
-                        progressDialog.dismiss();
-
-
-                        startActivity(new Intent(SignInActivity.this, MainActivity.class));
-
-
+                    if (loginResponse.isStatus()){
+                        Toast.makeText(SignInActivity.this, getString(R.string.account_created), Toast.LENGTH_SHORT).show();
+                        PreferenceHelper.setTokenForUser(SignInActivity.this,loginResponse.getToken());
+                        PreferenceHelper.setUserFirstName(SignInActivity.this,loginResponse.getUser().getName());
+                        Log.e("userName",loginResponse.getUser().getName());
+                        PreferenceHelper.setRemmemberMe(SignInActivity.this,true);
+                        navigateToHome();
                     }else {
                         Toast.makeText(SignInActivity.this,getString(R.string.fail), Toast.LENGTH_SHORT).show();
                     }
+
+                    progressDialog.dismiss();
                 }else {
 
                     Toast.makeText(SignInActivity.this,getString(R.string.fail) , Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
                 }
             }
 
             @Override
-            public void onFailure(Call<LoginUserResponse> call, Throwable t) {
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
 
                 if (t instanceof ConnectException) {
                     Toast.makeText(SignInActivity.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
                 }
 
+                Log.e("errorFromLogin",t+"");
+                progressDialog.dismiss();
+
             }
         });
 
 
     }
-
 
 
     public void goSignup(View view) {
@@ -135,6 +137,7 @@ public class SignInActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.wait));
+        progressDialog.setCancelable(false);
     }
 
     private boolean checkValidation() {
@@ -183,4 +186,10 @@ public class SignInActivity extends AppCompatActivity {
                 .show();
     }
 
+
+    void navigateToHome(){
+        Intent intent=new Intent(SignInActivity.this,MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

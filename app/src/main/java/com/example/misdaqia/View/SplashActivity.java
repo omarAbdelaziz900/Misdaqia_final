@@ -1,6 +1,5 @@
 package com.example.misdaqia.View;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.misdaqia.Common.Common;
@@ -17,6 +15,8 @@ import com.example.misdaqia.Model.LoginUserResponse;
 import com.example.misdaqia.R;
 import com.example.misdaqia.Services.ApiClient;
 import com.example.misdaqia.Services.JsonPlaceHolderApi;
+import com.example.misdaqia.SharedPreferences.PreferenceHelper;
+import com.example.misdaqia.View.login.SignInActivity;
 import com.example.misdaqia.localizationUtil.Localization;
 
 import java.util.HashMap;
@@ -32,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
 
     JsonPlaceHolderApi jsonPlaceHolderApi;
     private ProgressBar progressBar;
-
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,12 @@ public class SplashActivity extends AppCompatActivity {
                                 Login(email, password);
 
                             } else {
-                                Intent intent = new Intent(SplashActivity.this, SignInActivity.class);
+
+                                if (PreferenceHelper.getRemmemberMe(SplashActivity.this)) {
+                                     intent = new Intent(SplashActivity.this, MainActivity.class);
+                                }else {
+                                     intent = new Intent(SplashActivity.this, SignInActivity.class);
+                                }
                                 startActivity(intent);
                                 finish();
                             }
