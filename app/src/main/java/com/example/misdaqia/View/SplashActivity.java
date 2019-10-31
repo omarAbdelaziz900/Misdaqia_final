@@ -31,7 +31,6 @@ public class SplashActivity extends AppCompatActivity {
     int timeSec;
 
     JsonPlaceHolderApi jsonPlaceHolderApi;
-    private ProgressBar progressBar;
     Intent intent;
 
     @Override
@@ -73,7 +72,8 @@ public class SplashActivity extends AppCompatActivity {
                             } else {
 
                                 if (PreferenceHelper.getRemmemberMe(SplashActivity.this)) {
-                                     intent = new Intent(SplashActivity.this, MainActivity.class);
+//                                     intent = new Intent(SplashActivity.this, MainActivity.class);
+                                     intent = new Intent(SplashActivity.this, HomeActivity.class);
                                 }else {
                                      intent = new Intent(SplashActivity.this, SignInActivity.class);
                                 }
@@ -89,7 +89,6 @@ public class SplashActivity extends AppCompatActivity {
         splash_screen.start();
 
 
-        initView();
     }
 
 
@@ -116,7 +115,7 @@ public class SplashActivity extends AppCompatActivity {
                     LoginUserResponse loginUserResponse = response.body();
 
                     if (loginUserResponse.getEmail().equals(Email)) {
-                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                        startActivity(new Intent(SplashActivity.this, HomeActivity.class));
                         finish();
 
                     } else {
@@ -131,7 +130,7 @@ public class SplashActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<LoginUserResponse> call, Throwable t) {
 //                    progressDialog.dismiss();
-                    progressBar.setVisibility(View.INVISIBLE);
+//                    progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(SplashActivity.this, "" + t.getMessage(), Toast.LENGTH_LONG).show();
                 }
             });
@@ -144,7 +143,5 @@ public class SplashActivity extends AppCompatActivity {
     }
 
 
-    private void initView() {
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-    }
+
 }

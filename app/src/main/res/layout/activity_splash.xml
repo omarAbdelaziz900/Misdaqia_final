@@ -10,7 +10,7 @@
     tools:context=".View.SplashActivity">
     <com.example.misdaqia.Helper.HeaderFontTextview
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="match_parent"
         android:id="@+id/splashTxt"
         android:textDirection="anyRtl"
         android:scaleType="fitXY"
@@ -20,20 +20,20 @@
         android:textStyle="bold"
         android:gravity="center"
         />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/splashTxt">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/splashTxt">-->
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_gravity="center"
-            android:layout_alignParentLeft="true"
-            />
-    </LinearLayout>
+        <!--&lt;!&ndash;<ProgressBar&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/progressBar"&ndash;&gt;-->
+            <!--&lt;!&ndash;style="?android:attr/progressBarStyle"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_alignParentBottom="true"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_alignParentStart="true"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_gravity="center"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_alignParentLeft="true"&ndash;&gt;-->
+            <!--&lt;!&ndash;/>&ndash;&gt;-->
+    <!--</LinearLayout>-->
 </RelativeLayout>

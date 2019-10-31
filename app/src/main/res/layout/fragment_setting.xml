@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:paddingTop="@dimen/_8sdp"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".View.SettingFragment">
+
+    <com.example.misdaqia.Helper.MainFontTextview
+        android:id="@+id/arabic_txt"
+        android:padding="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="العربيه"
+        android:textSize="@dimen/_14sdp"
+        android:textAllCaps="false"
+        android:textColor="#000"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_marginBottom="@dimen/_2sdp"/>
+
+    <com.example.misdaqia.Helper.MainFontTextview
+        android:id="@+id/english_txt"
+        android:gravity="right"
+        android:padding="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="English"
+        android:textSize="@dimen/_14sdp"
+        android:textAllCaps="false"
+        android:textColor="#000"/>
+
+</LinearLayout>

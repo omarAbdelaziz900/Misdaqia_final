@@ -3,6 +3,7 @@ package com.example.misdaqia.ViewUtil;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -373,4 +374,16 @@ public final class ViewUtil {
         return str;
     }
 
+    public static void openDialog(ProgressDialog progressDialog,Context context,int type){
+        progressDialog=new ProgressDialog(context);
+        progressDialog.setMessage(context.getString(R.string.please_wait));
+        progressDialog.setCancelable(false);
+//        type 1 //show
+//        type 2 //dismiss
+        if (type==1){
+            progressDialog.show();
+        }else {
+            progressDialog.dismiss();
+        }
+    }
 }

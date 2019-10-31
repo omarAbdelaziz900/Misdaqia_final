@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".View.Jewerly">
 
+    <include layout="@layout/app_bar_for_activity"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -15,6 +16,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/julary_id"
+        android:scrollbars="vertical"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="5dp"

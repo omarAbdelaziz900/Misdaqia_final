@@ -7,6 +7,8 @@
     android:orientation="vertical"
     tools:context=".View.Buldings">
 
+    <include layout="@layout/app_bar_for_activity"/>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"

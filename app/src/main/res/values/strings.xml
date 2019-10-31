@@ -79,4 +79,7 @@
     <string name="misdaqia">مصداقيه</string>
     <string name="name">الاسم</string>
     <string name="account_created">تمت العمليه بنجاح</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

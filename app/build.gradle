@@ -22,6 +22,18 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+    google()
+    mavenCentral()
+    jcenter()
+//    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+
+}
+
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
@@ -54,4 +66,7 @@ dependencies {
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
     implementation 'com.github.bumptech.glide:glide:4.1.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+
+    implementation 'com.github.Rohyme:PrettyStateView:2.3.0'
+    implementation 'com.wang.avi:library:2.1.3'
 }

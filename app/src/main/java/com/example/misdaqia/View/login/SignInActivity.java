@@ -19,6 +19,7 @@ import com.example.misdaqia.R;
 import com.example.misdaqia.Services.ApiClient;
 import com.example.misdaqia.Services.JsonPlaceHolderApi;
 import com.example.misdaqia.SharedPreferences.PreferenceHelper;
+import com.example.misdaqia.View.HomeActivity;
 import com.example.misdaqia.View.MainActivity;
 import com.example.misdaqia.View.register.SignUpActivity;
 import com.example.misdaqia.ViewUtil.ViewUtil;
@@ -188,7 +189,7 @@ public class SignInActivity extends AppCompatActivity {
 
 
     void navigateToHome(){
-        Intent intent=new Intent(SignInActivity.this,MainActivity.class);
+        Intent intent=new Intent(SignInActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();
     }
