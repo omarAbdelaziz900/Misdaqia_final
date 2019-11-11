@@ -1,5 +1,6 @@
 package com.example.misdaqia.View;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,7 +22,9 @@ import com.example.misdaqia.Model.NavigationDrawerItem;
 import com.example.misdaqia.R;
 import com.example.misdaqia.Utils.FragmentUtils;
 import com.example.misdaqia.Utils.RecyclerDividerItemDecoration;
+import com.example.misdaqia.View.login.SignInActivity;
 import com.example.misdaqia.ViewUtil.ViewUtil;
+import com.example.misdaqia.localizationUtil.Localization;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,17 +62,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerA
 
         mFragmentManager = getSupportFragmentManager();
 
-        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_home_black_24dp, "الصفحه الرئيسيه"));
-        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_account_circle_black_24dp, "حسابي"));
-        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_shopping_cart_black_24dp, "الحقيبه"));
-        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_favorite_black_24dp, "مزاداتي"));
-        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_add_circle_outline_black_24dp, "اضافه مزاد فوري"));
-
-        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_add_circle_outline_black_24dp, "اضافه مزاد مفتوح"));
-        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_add_circle_outline_black_24dp, "اضافه مزاد مسعر"));
-        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_style_black_24dp, "المحفظه"));
-        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_settings_black_24dp, "الاعدادات"));
-        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_arrow_back_black_24dp, "تسجيل الخروج"));
+//        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_home_black_24dp, "الصفحه الرئيسيه"));
+//        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_account_circle_black_24dp, "حسابي"));
+//        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_shopping_cart_black_24dp, "الحقيبه"));
+//        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_favorite_black_24dp, "مزاداتي"));
+//        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_add_circle_outline_black_24dp, "اضافه مزاد فوري"));
+//        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_add_circle_outline_black_24dp, "اضافه مزاد مفتوح"));
+//        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_add_circle_outline_black_24dp, "اضافه مزاد مسعر"));
+//        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_style_black_24dp, "المحفظه"));
+//        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_settings_black_24dp, "الاعدادات"));
+//        drawerItem.add(new NavigationDrawerItem(R.drawable.ic_arrow_back_black_24dp, "تسجيل الخروج"));
 
 
         setupNavigationDrawer();
@@ -88,7 +90,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerA
         mDrawerRecyclerView.setLayoutManager(mLayoutManager);
         mDrawerRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mDrawerRecyclerView.addItemDecoration(new RecyclerDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 15, true));
-        mDrawerAdapter = new NavigationDrawerAdapter(getApplicationContext(), getData());
+        if (Localization.getCurrentLanguageID(HomeActivity.this)==Localization.arabic) {
+            mDrawerAdapter = new NavigationDrawerAdapter(getApplicationContext(), getData());
+        }else {
+            mDrawerAdapter = new NavigationDrawerAdapter(getApplicationContext(), getDataInEnglish());
+        }
         mDrawerRecyclerView.setAdapter(mDrawerAdapter);
         mDrawerAdapter.setOnitemClicked(this);
     }
@@ -106,6 +112,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerA
         list.add(new NavigationDrawerItem("المحفظه", R.drawable.ic_style_black_24dp, NavigationDrawerItem.MENU_TYPE));
         list.add(new NavigationDrawerItem("الاعدادات", R.drawable.ic_settings_black_24dp, NavigationDrawerItem.MENU_TYPE));
         list.add(new NavigationDrawerItem("تسجيل الخروج", R.drawable.ic_arrow_back_black_24dp, NavigationDrawerItem.MENU_TYPE));
+
+        return list;
+    }
+
+
+    private List<NavigationDrawerItem> getDataInEnglish() {
+        List<NavigationDrawerItem> list = new ArrayList<>();
+        list.add(new NavigationDrawerItem(NavigationDrawerItem.HEADER_VIEW_TYPE));
+        list.add(new NavigationDrawerItem("Home", R.drawable.ic_home_black_24dp, NavigationDrawerItem.MENU_TYPE));
+        list.add(new NavigationDrawerItem("My Account", R.drawable.ic_account_circle_black_24dp, NavigationDrawerItem.MENU_TYPE));
+        list.add(new NavigationDrawerItem("Satchel", R.drawable.ic_shopping_cart_black_24dp, NavigationDrawerItem.MENU_TYPE));
+        list.add(new NavigationDrawerItem("My auctions", R.drawable.ic_favorite_black_24dp, NavigationDrawerItem.MENU_TYPE));
+        list.add(new NavigationDrawerItem("Add an instant auction", R.drawable.ic_add_circle_outline_black_24dp, NavigationDrawerItem.MENU_TYPE));
+        list.add(new NavigationDrawerItem("Add an open auction", R.drawable.ic_add_circle_outline_black_24dp, NavigationDrawerItem.MENU_TYPE));
+        list.add(new NavigationDrawerItem("Add Auction Price", R.drawable.ic_add_circle_outline_black_24dp, NavigationDrawerItem.MENU_TYPE));
+        list.add(new NavigationDrawerItem("Portfolio", R.drawable.ic_style_black_24dp, NavigationDrawerItem.MENU_TYPE));
+        list.add(new NavigationDrawerItem("Setting", R.drawable.ic_settings_black_24dp, NavigationDrawerItem.MENU_TYPE));
+        list.add(new NavigationDrawerItem("Logout", R.drawable.ic_arrow_back_black_24dp, NavigationDrawerItem.MENU_TYPE));
 
         return list;
     }
@@ -145,6 +169,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerA
         }else if (position == 9) {
             showFragment(new SettingFragment(),"الاعدادات");
 //            Toast.makeText(this, position+"", Toast.LENGTH_SHORT).show();
+        }else if (position == 10) {
+            Intent intent=new Intent(HomeActivity.this, SignInActivity.class);
+            startActivity(intent);
+            finishAffinity();
         }
     }
 
